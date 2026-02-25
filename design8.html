@@ -1,0 +1,560 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GreenSprout - Make the right moves for your future</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: white;
+        }
+        
+        /* Header - White with green accent */
+        header {
+            background: white;
+            border-bottom: 3px solid #27ae60;
+            padding: 22px 0;
+        }
+        
+        nav {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 25px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #27ae60;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .nav-menu {
+            display: flex;
+            gap: 28px;
+            list-style: none;
+        }
+        
+        .nav-menu a {
+            color: #555;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+        
+        .nav-menu a:hover {
+            color: #27ae60;
+        }
+        
+        /* Hero - Large featured section */
+        .hero-section {
+            background: #f8f9fa;
+            padding: 50px 25px;
+        }
+        
+        .hero-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1.5fr 1fr;
+            gap: 40px;
+            align-items: center;
+        }
+        
+        .hero-text h1 {
+            font-size: 2.8rem;
+            color: #2c3e50;
+            margin-bottom: 20px;
+            line-height: 1.2;
+        }
+        
+        .hero-text p {
+            font-size: 1.2rem;
+            color: #666;
+            margin-bottom: 25px;
+        }
+        
+        .hero-cta {
+            display: inline-block;
+            padding: 15px 35px;
+            background: #27ae60;
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: 600;
+            transition: background 0.3s;
+        }
+        
+        .hero-cta:hover {
+            background: #229954;
+        }
+        
+        .hero-image {
+            height: 350px;
+            background: linear-gradient(135deg, #27ae60 0%, #229954 100%);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 4rem;
+        }
+        
+        /* Category tabs */
+        .category-nav {
+            background: white;
+            border-bottom: 1px solid #e0e0e0;
+            padding: 15px 25px;
+        }
+        
+        .category-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            gap: 5px;
+            overflow-x: auto;
+        }
+        
+        .category-tab {
+            padding: 10px 20px;
+            background: transparent;
+            border: 2px solid #e0e0e0;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: 500;
+            transition: all 0.3s;
+            color: #555;
+            white-space: nowrap;
+        }
+        
+        .category-tab.active {
+            border-color: #27ae60;
+            color: #27ae60;
+            background: #e8f5e9;
+        }
+        
+        /* Main content */
+        .container {
+            max-width: 1200px;
+            margin: 45px auto;
+            padding: 0 25px;
+        }
+        
+        .section-title {
+            font-size: 2rem;
+            margin-bottom: 30px;
+            color: #2c3e50;
+            font-weight: 600;
+        }
+        
+        /* Articles grid - larger cards */
+        .articles-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
+            gap: 35px;
+        }
+        
+        .article-card {
+            background: white;
+            border: 1px solid #e0e0e0;
+            border-radius: 12px;
+            overflow: hidden;
+            transition: box-shadow 0.3s, transform 0.3s;
+            cursor: pointer;
+        }
+        
+        .article-card:hover {
+            box-shadow: 0 6px 20px rgba(0,0,0,0.1);
+            transform: translateY(-3px);
+        }
+        
+        .article-image {
+            height: 220px;
+            background: linear-gradient(135deg, #27ae60 0%, #229954 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 3.5rem;
+        }
+        
+        .article-card:nth-child(2n) .article-image {
+            background: linear-gradient(135deg, #229954 0%, #1e8449 100%);
+        }
+        
+        .article-card:nth-child(3n) .article-image {
+            background: linear-gradient(135deg, #1e8449 0%, #196f3d 100%);
+        }
+        
+        .article-content {
+            padding: 28px;
+        }
+        
+        .article-meta-top {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 15px;
+        }
+        
+        .article-category {
+            padding: 5px 12px;
+            background: #27ae60;
+            color: white;
+            border-radius: 4px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+        }
+        
+        .article-date {
+            color: #999;
+            font-size: 0.85rem;
+        }
+        
+        .article-title {
+            font-size: 1.4rem;
+            margin-bottom: 12px;
+            color: #2c3e50;
+            font-weight: 600;
+            line-height: 1.4;
+        }
+        
+        .article-excerpt {
+            color: #666;
+            font-size: 0.98rem;
+            line-height: 1.65;
+        }
+        
+        /* Newsletter - side by side */
+        .newsletter {
+            background: #f8f9fa;
+            padding: 50px 25px;
+            margin: 60px 0;
+        }
+        
+        .newsletter-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1.2fr 1fr;
+            gap: 40px;
+            align-items: center;
+        }
+        
+        .newsletter-text h2 {
+            font-size: 2.2rem;
+            margin-bottom: 15px;
+            color: #2c3e50;
+        }
+        
+        .newsletter-text p {
+            font-size: 1.1rem;
+            color: #666;
+            line-height: 1.7;
+        }
+        
+        .newsletter-form {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+        
+        .newsletter-input {
+            padding: 15px 20px;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            font-size: 1rem;
+        }
+        
+        .newsletter-button {
+            padding: 15px;
+            background: #27ae60;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+        
+        .newsletter-button:hover {
+            background: #229954;
+        }
+        
+        /* Footer */
+        footer {
+            background: #2c3e50;
+            color: white;
+            padding: 50px 25px 30px;
+        }
+        
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+        
+        .footer-section h3 {
+            margin-bottom: 20px;
+            color: #27ae60;
+            font-size: 1.1rem;
+        }
+        
+        .footer-section p {
+            color: #bdc3c7;
+            line-height: 1.7;
+        }
+        
+        .footer-links {
+            list-style: none;
+        }
+        
+        .footer-links li {
+            margin-bottom: 10px;
+        }
+        
+        .footer-links a {
+            color: #bdc3c7;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .footer-links a:hover {
+            color: white;
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 15px;
+        }
+        
+        .social-links a {
+            color: #bdc3c7;
+            font-size: 1.3rem;
+            transition: color 0.3s;
+        }
+        
+        .social-links a:hover {
+            color: #27ae60;
+        }
+        
+        .footer-bottom {
+            border-top: 1px solid #34495e;
+            padding-top: 30px;
+            color: #95a5a6;
+            font-size: 0.9rem;
+            line-height: 1.7;
+        }
+        
+        @media (max-width: 968px) {
+            .hero-container,
+            .newsletter-container {
+                grid-template-columns: 1fr;
+            }
+            
+            .nav-menu {
+                display: none;
+            }
+            
+            .articles-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo">🌱 GreenSprout</div>
+            <ul class="nav-menu">
+                <li><a href="#">Banking</a></li>
+                <li><a href="#">Investing</a></li>
+                <li><a href="#">Credit Cards</a></li>
+                <li><a href="#">Loans</a></li>
+                <li><a href="#">Insurance</a></li>
+            </ul>
+        </nav>
+    </header>
+    
+    <section class="hero-section">
+        <div class="hero-container">
+            <div class="hero-text">
+                <h1>Make the right moves for your future</h1>
+                <p>Independent financial guidance to help you invest smarter, save more, and reach your goals faster.</p>
+                <a href="#" class="hero-cta">Explore Articles</a>
+            </div>
+            <div class="hero-image">💰</div>
+        </div>
+    </section>
+    
+    <nav class="category-nav">
+        <div class="category-container">
+            <div class="category-tab active">All Topics</div>
+            <div class="category-tab">Banking</div>
+            <div class="category-tab">Investing</div>
+            <div class="category-tab">Credit Cards</div>
+            <div class="category-tab">Loans</div>
+            <div class="category-tab">Insurance</div>
+            <div class="category-tab">Retirement</div>
+        </div>
+    </nav>
+    
+    <div class="container">
+        <h2 class="section-title">Latest Financial Insights</h2>
+        
+        <div class="articles-grid">
+            <article class="article-card">
+                <div class="article-image">💳</div>
+                <div class="article-content">
+                    <div class="article-meta-top">
+                        <span class="article-category">Credit Cards</span>
+                        <span class="article-date">Feb 25, 2026</span>
+                    </div>
+                    <h3 class="article-title">Best Travel Rewards Cards of 2026</h3>
+                    <p class="article-excerpt">Maximize your points and unlock premium travel benefits with these top-rated credit cards for frequent travelers.</p>
+                </div>
+            </article>
+            
+            <article class="article-card">
+                <div class="article-image">💰</div>
+                <div class="article-content">
+                    <div class="article-meta-top">
+                        <span class="article-category">Banking</span>
+                        <span class="article-date">Feb 24, 2026</span>
+                    </div>
+                    <h3 class="article-title">High-Yield Savings: Where to Get 5%+ APY</h3>
+                    <p class="article-excerpt">Make your cash work harder with these top-rated online savings accounts offering competitive rates.</p>
+                </div>
+            </article>
+            
+            <article class="article-card">
+                <div class="article-image">📈</div>
+                <div class="article-content">
+                    <div class="article-meta-top">
+                        <span class="article-category">Investing</span>
+                        <span class="article-date">Feb 23, 2026</span>
+                    </div>
+                    <h3 class="article-title">5 Index Funds Every Beginner Should Consider</h3>
+                    <p class="article-excerpt">Build wealth steadily with these diversified, low-cost investment options perfect for beginners.</p>
+                </div>
+            </article>
+            
+            <article class="article-card">
+                <div class="article-image">🚗</div>
+                <div class="article-content">
+                    <div class="article-meta-top">
+                        <span class="article-category">Insurance</span>
+                        <span class="article-date">Feb 22, 2026</span>
+                    </div>
+                    <h3 class="article-title">Cut Your Auto Insurance Payment By $400+/Year</h3>
+                    <p class="article-excerpt">Stop overpaying on car insurance. Compare offers from trusted insurers in just 2 minutes.</p>
+                </div>
+            </article>
+            
+            <article class="article-card">
+                <div class="article-image">🏠</div>
+                <div class="article-content">
+                    <div class="article-meta-top">
+                        <span class="article-category">Loans</span>
+                        <span class="article-date">Feb 21, 2026</span>
+                    </div>
+                    <h3 class="article-title">When Refinancing Your Mortgage Makes Sense</h3>
+                    <p class="article-excerpt">Calculate whether lower rates justify the closing costs and discover the break-even point.</p>
+                </div>
+            </article>
+            
+            <article class="article-card">
+                <div class="article-image">💎</div>
+                <div class="article-content">
+                    <div class="article-meta-top">
+                        <span class="article-category">Retirement</span>
+                        <span class="article-date">Feb 20, 2026</span>
+                    </div>
+                    <h3 class="article-title">Roth vs Traditional IRA: Which to Choose?</h3>
+                    <p class="article-excerpt">Understanding the tax implications can make a $300K difference in your retirement savings.</p>
+                </div>
+            </article>
+        </div>
+    </div>
+    
+    <section class="newsletter">
+        <div class="newsletter-container">
+            <div class="newsletter-text">
+                <h2>Stay Ahead of Your Finances</h2>
+                <p>Join 500,000+ readers getting weekly insights on investing, credit, and personal finance. Expert guidance delivered straight to your inbox.</p>
+            </div>
+            <form class="newsletter-form">
+                <input type="email" class="newsletter-input" placeholder="Enter your email address">
+                <button type="submit" class="newsletter-button">Subscribe Free</button>
+            </form>
+        </div>
+    </section>
+    
+    <footer>
+        <div class="footer-content">
+            <div class="footer-grid">
+                <div class="footer-section">
+                    <h3>🌱 GreenSprout</h3>
+                    <p>Independent financial journalism helping you make smarter money decisions every day.</p>
+                    <div class="social-links">
+                        <a href="https://twitter.com/Greensprout">𝕏</a>
+                        <a href="https://www.facebook.com/GreenSproutOfficial">📘</a>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h3>Topics</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">Banking</a></li>
+                        <li><a href="#">Credit Cards</a></li>
+                        <li><a href="#">Investing</a></li>
+                        <li><a href="#">Loans</a></li>
+                        <li><a href="#">Insurance</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Company</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">About Us</a></li>
+                        <li><a href="#">Editorial Policy</a></li>
+                        <li><a href="#">Contact</a></li>
+                        <li><a href="#">Careers</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Legal</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">Privacy Policy</a></li>
+                        <li><a href="#">Terms of Service</a></li>
+                        <li><a href="#">Advertiser Disclosure</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>GreenSprout.com is an independent, advertising-supported comparison website. The products or offers that appear on this website are from third party partners and advertisers from which GreenSprout.com receives compensation. This compensation may influence which products we review, write about, advertise, and how and where those products appear on our website. The articles found on GreenSprout.com are provided as free tools and are for informational purposes only. GreenSprout.com is not an investment advisor and our content is not intended to provide investment advice.</p>
+                <p style="margin-top: 15px;">© 2026 GreenSprout • 1343 Main St Suite 705, Sarasota FL 34236</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
