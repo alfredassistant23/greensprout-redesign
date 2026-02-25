@@ -1,0 +1,582 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GreenSprout - Finance Smarter</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: #f5f7fa;
+        }
+        
+        /* Header */
+        header {
+            background: white;
+            border-bottom: 1px solid #e5e7eb;
+        }
+        
+        nav {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #2563eb;
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 25px;
+            list-style: none;
+        }
+        
+        .nav-links a {
+            text-decoration: none;
+            color: #4b5563;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+        
+        .nav-links a:hover {
+            color: #2563eb;
+        }
+        
+        .cta-button {
+            padding: 10px 20px;
+            background: #2563eb;
+            color: white;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: 500;
+        }
+        
+        /* Search Hero */
+        .search-hero {
+            background: white;
+            padding: 60px 20px;
+        }
+        
+        .search-container {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+        }
+        
+        .search-hero h1 {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+            color: #1f2937;
+        }
+        
+        .search-hero p {
+            font-size: 1.2rem;
+            color: #6b7280;
+            margin-bottom: 30px;
+        }
+        
+        .search-box {
+            display: flex;
+            max-width: 600px;
+            margin: 0 auto 30px;
+            border: 2px solid #2563eb;
+            border-radius: 8px;
+            overflow: hidden;
+            background: white;
+        }
+        
+        .search-box input {
+            flex: 1;
+            padding: 15px 20px;
+            border: none;
+            font-size: 1rem;
+            outline: none;
+        }
+        
+        .search-box button {
+            padding: 15px 30px;
+            background: #2563eb;
+            color: white;
+            border: none;
+            cursor: pointer;
+            font-weight: 600;
+        }
+        
+        .quick-links {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+        
+        .quick-link {
+            padding: 8px 16px;
+            background: #f3f4f6;
+            border-radius: 20px;
+            text-decoration: none;
+            color: #4b5563;
+            font-size: 0.9rem;
+            transition: background 0.3s;
+        }
+        
+        .quick-link:hover {
+            background: #e5e7eb;
+        }
+        
+        /* Comparison Section */
+        .comparison-section {
+            max-width: 1200px;
+            margin: 50px auto;
+            padding: 0 20px;
+        }
+        
+        .section-header {
+            margin-bottom: 30px;
+        }
+        
+        .section-header h2 {
+            font-size: 2rem;
+            margin-bottom: 10px;
+            color: #1f2937;
+        }
+        
+        .section-header p {
+            color: #6b7280;
+            font-size: 1.1rem;
+        }
+        
+        .comparison-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 20px;
+        }
+        
+        .comparison-card {
+            background: white;
+            border-radius: 12px;
+            padding: 30px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            transition: box-shadow 0.3s;
+        }
+        
+        .comparison-card:hover {
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        }
+        
+        .card-badge {
+            display: inline-block;
+            padding: 5px 12px;
+            background: #dbeafe;
+            color: #2563eb;
+            border-radius: 4px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-bottom: 15px;
+        }
+        
+        .card-title {
+            font-size: 1.4rem;
+            margin-bottom: 10px;
+            color: #1f2937;
+        }
+        
+        .card-subtitle {
+            color: #6b7280;
+            margin-bottom: 20px;
+            font-size: 0.95rem;
+        }
+        
+        .card-features {
+            list-style: none;
+            margin-bottom: 20px;
+        }
+        
+        .card-features li {
+            padding: 8px 0;
+            color: #4b5563;
+            font-size: 0.95rem;
+        }
+        
+        .card-features li:before {
+            content: "✓ ";
+            color: #10b981;
+            font-weight: bold;
+            margin-right: 8px;
+        }
+        
+        .card-cta {
+            display: inline-block;
+            width: 100%;
+            padding: 12px;
+            text-align: center;
+            background: #2563eb;
+            color: white;
+            text-decoration: none;
+            border-radius: 6px;
+            font-weight: 600;
+            transition: background 0.3s;
+        }
+        
+        .card-cta:hover {
+            background: #1d4ed8;
+        }
+        
+        /* Tools Section */
+        .tools-section {
+            background: white;
+            padding: 60px 20px;
+            margin: 50px 0;
+        }
+        
+        .tools-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .tools-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 25px;
+        }
+        
+        .tool-card {
+            text-align: center;
+            padding: 30px 20px;
+            background: #f9fafb;
+            border-radius: 12px;
+            transition: transform 0.3s;
+            cursor: pointer;
+        }
+        
+        .tool-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .tool-icon {
+            font-size: 3rem;
+            margin-bottom: 15px;
+        }
+        
+        .tool-title {
+            font-size: 1.2rem;
+            margin-bottom: 8px;
+            color: #1f2937;
+        }
+        
+        .tool-description {
+            color: #6b7280;
+            font-size: 0.9rem;
+        }
+        
+        /* News Section */
+        .news-section {
+            max-width: 1200px;
+            margin: 50px auto;
+            padding: 0 20px;
+        }
+        
+        .news-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+        }
+        
+        .news-card {
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        
+        .news-image {
+            height: 180px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+        
+        .news-content {
+            padding: 20px;
+        }
+        
+        .news-meta {
+            color: #6b7280;
+            font-size: 0.85rem;
+            margin-bottom: 10px;
+        }
+        
+        .news-title {
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+            color: #1f2937;
+        }
+        
+        .news-excerpt {
+            color: #6b7280;
+            font-size: 0.9rem;
+        }
+        
+        /* Footer */
+        footer {
+            background: #1f2937;
+            color: white;
+            padding: 50px 20px 30px;
+            margin-top: 50px;
+        }
+        
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 40px;
+            margin-bottom: 30px;
+        }
+        
+        .footer-section h3 {
+            margin-bottom: 15px;
+            color: #60a5fa;
+        }
+        
+        .footer-links {
+            list-style: none;
+        }
+        
+        .footer-links li {
+            margin-bottom: 8px;
+        }
+        
+        .footer-links a {
+            color: #d1d5db;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .footer-links a:hover {
+            color: white;
+        }
+        
+        .footer-bottom {
+            border-top: 1px solid #374151;
+            padding-top: 20px;
+            text-align: center;
+            color: #9ca3af;
+            font-size: 0.9rem;
+        }
+        
+        @media (max-width: 768px) {
+            .search-hero h1 {
+                font-size: 2rem;
+            }
+            
+            .nav-links {
+                display: none;
+            }
+            
+            .search-box {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo">🌱 GreenSprout</div>
+            <ul class="nav-links">
+                <li><a href="#">Credit Cards</a></li>
+                <li><a href="#">Loans</a></li>
+                <li><a href="#">Banking</a></li>
+                <li><a href="#">Investing</a></li>
+                <li><a href="#">Insurance</a></li>
+            </ul>
+            <a href="#" class="cta-button">Sign In</a>
+        </nav>
+    </header>
+    
+    <section class="search-hero">
+        <div class="search-container">
+            <h1>Find your next financial product in minutes</h1>
+            <p>Compare top offers and make smarter money decisions</p>
+            <div class="search-box">
+                <input type="text" placeholder="What product or service are you looking for?">
+                <button>Search</button>
+            </div>
+            <div class="quick-links">
+                <a href="#" class="quick-link">Best Credit Cards</a>
+                <a href="#" class="quick-link">High-Yield Savings</a>
+                <a href="#" class="quick-link">Personal Loans</a>
+                <a href="#" class="quick-link">Mortgage Rates</a>
+                <a href="#" class="quick-link">Investing</a>
+            </div>
+        </div>
+    </section>
+    
+    <section class="comparison-section">
+        <div class="section-header">
+            <h2>Top picks for you</h2>
+            <p>Expert-reviewed products based on your interests</p>
+        </div>
+        <div class="comparison-grid">
+            <div class="comparison-card">
+                <span class="card-badge">BEST FOR REWARDS</span>
+                <h3 class="card-title">Chase Sapphire Preferred®</h3>
+                <p class="card-subtitle">Earn 60,000 bonus points after $4,000 spent</p>
+                <ul class="card-features">
+                    <li>2X points on travel and dining</li>
+                    <li>25% more value when redeeming</li>
+                    <li>No foreign transaction fees</li>
+                </ul>
+                <a href="#" class="card-cta">Learn More</a>
+            </div>
+            <div class="comparison-card">
+                <span class="card-badge">BEST APY</span>
+                <h3 class="card-title">Marcus High-Yield Savings</h3>
+                <p class="card-subtitle">Earn 5.15% APY with no fees</p>
+                <ul class="card-features">
+                    <li>No minimum deposit</li>
+                    <li>FDIC insured</li>
+                    <li>Easy online access</li>
+                </ul>
+                <a href="#" class="card-cta">Open Account</a>
+            </div>
+            <div class="comparison-card">
+                <span class="card-badge">BEST FOR BEGINNERS</span>
+                <h3 class="card-title">Fidelity Invest Account</h3>
+                <p class="card-subtitle">Start investing with $0 minimums</p>
+                <ul class="card-features">
+                    <li>Commission-free trades</li>
+                    <li>Fractional shares available</li>
+                    <li>Expert research tools</li>
+                </ul>
+                <a href="#" class="card-cta">Get Started</a>
+            </div>
+        </div>
+    </section>
+    
+    <section class="tools-section">
+        <div class="tools-container">
+            <div class="section-header">
+                <h2>Financial tools & calculators</h2>
+                <p>Make informed decisions with our free tools</p>
+            </div>
+            <div class="tools-grid">
+                <div class="tool-card">
+                    <div class="tool-icon">🧮</div>
+                    <h3 class="tool-title">Savings Calculator</h3>
+                    <p class="tool-description">See how much you could save</p>
+                </div>
+                <div class="tool-card">
+                    <div class="tool-icon">🏠</div>
+                    <h3 class="tool-title">Mortgage Calculator</h3>
+                    <p class="tool-description">Estimate your monthly payment</p>
+                </div>
+                <div class="tool-card">
+                    <div class="tool-icon">📊</div>
+                    <h3 class="tool-title">Investment Returns</h3>
+                    <p class="tool-description">Project your portfolio growth</p>
+                </div>
+                <div class="tool-card">
+                    <div class="tool-icon">💳</div>
+                    <h3 class="tool-title">Credit Card Payoff</h3>
+                    <p class="tool-description">Plan your debt repayment</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section class="news-section">
+        <div class="section-header">
+            <h2>Latest financial news</h2>
+            <p>Stay informed with expert analysis and insights</p>
+        </div>
+        <div class="news-grid">
+            <div class="news-card">
+                <div class="news-image"></div>
+                <div class="news-content">
+                    <div class="news-meta">MARKETS • 2 hours ago</div>
+                    <h3 class="news-title">Fed Holds Rates Steady: What It Means for Your Money</h3>
+                    <p class="news-excerpt">Analysis of the latest Federal Reserve decision and its impact on savings, loans, and investments.</p>
+                </div>
+            </div>
+            <div class="news-card">
+                <div class="news-image"></div>
+                <div class="news-content">
+                    <div class="news-meta">CREDIT CARDS • 5 hours ago</div>
+                    <h3 class="news-title">New Credit Card Rules Take Effect This Month</h3>
+                    <p class="news-excerpt">What cardholders need to know about the latest regulatory changes.</p>
+                </div>
+            </div>
+            <div class="news-card">
+                <div class="news-image"></div>
+                <div class="news-content">
+                    <div class="news-meta">INVESTING • 1 day ago</div>
+                    <h3 class="news-title">Top 3 Index Funds Outperforming in 2026</h3>
+                    <p class="news-excerpt">Which low-cost funds are delivering the best returns this year.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <footer>
+        <div class="footer-content">
+            <div class="footer-grid">
+                <div class="footer-section">
+                    <h3>Company</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">About</a></li>
+                        <li><a href="#">Careers</a></li>
+                        <li><a href="#">Press</a></li>
+                        <li><a href="#">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Products</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">Credit Cards</a></li>
+                        <li><a href="#">Banking</a></li>
+                        <li><a href="#">Loans</a></li>
+                        <li><a href="#">Investing</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Resources</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">Learning Center</a></li>
+                        <li><a href="#">Calculators</a></li>
+                        <li><a href="#">Reviews</a></li>
+                        <li><a href="#">Blog</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Legal</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">Privacy</a></li>
+                        <li><a href="#">Terms</a></li>
+                        <li><a href="#">Disclosure</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>GreenSprout is an independent, advertising-supported comparison website. Products shown may be from partners who compensate us, which may impact how they appear on our site.</p>
+                <p style="margin-top: 10px;">© 2026 GreenSprout, Inc. • Sarasota, FL</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
