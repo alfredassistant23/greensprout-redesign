@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GreenSprout - Make the right moves for your future</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            line-height: 1.65;
+            color: #2c3e50;
+            background: #fafafa;
+        }
+        
+        /* Minimal clean header */
+        header {
+            background: white;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.06);
+        }
+        
+        nav {
+            max-width: 1150px;
+            margin: 0 auto;
+            padding: 22px 28px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-size: 1.7rem;
+            font-weight: 700;
+            color: #27ae60;
+            letter-spacing: -0.5px;
+        }
+        
+        .nav-menu {
+            display: flex;
+            gap: 28px;
+            list-style: none;
+        }
+        
+        .nav-menu a {
+            text-decoration: none;
+            color: #5a6c7d;
+            font-weight: 500;
+            font-size: 0.95rem;
+            transition: color 0.3s;
+        }
+        
+        .nav-menu a:hover {
+            color: #27ae60;
+        }
+        
+        /* Clean tagline section */
+        .tagline {
+            background: white;
+            padding: 45px 28px;
+            border-bottom: 1px solid #e8e8e8;
+        }
+        
+        .tagline-content {
+            max-width: 1150px;
+            margin: 0 auto;
+        }
+        
+        .tagline h1 {
+            font-size: 2.3rem;
+            color: #2c3e50;
+            margin-bottom: 12px;
+            font-weight: 600;
+            letter-spacing: -0.5px;
+        }
+        
+        .tagline p {
+            font-size: 1.15rem;
+            color: #5a6c7d;
+        }
+        
+        /* Content container */
+        .container {
+            max-width: 1150px;
+            margin: 45px auto;
+            padding: 0 28px;
+        }
+        
+        /* Simple card grid */
+        .content-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+            gap: 28px;
+        }
+        
+        .content-card {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+            transition: box-shadow 0.3s, transform 0.3s;
+            cursor: pointer;
+        }
+        
+        .content-card:hover {
+            box-shadow: 0 4px 12px rgba(0,0,0,0.12);
+            transform: translateY(-3px);
+        }
+        
+        .card-image {
+            height: 210px;
+            background: linear-gradient(135deg, #27ae60 0%, #229954 100%);
+        }
+        
+        /* Vary colors subtly */
+        .content-card:nth-child(2n) .card-image {
+            background: linear-gradient(135deg, #229954 0%, #1e8449 100%);
+        }
+        
+        .content-card:nth-child(3n) .card-image {
+            background: linear-gradient(135deg, #1e8449 0%, #196f3d 100%);
+        }
+        
+        .card-body {
+            padding: 26px;
+        }
+        
+        .card-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 14px;
+        }
+        
+        .card-category {
+            color: #27ae60;
+            font-size: 0.82rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.8px;
+        }
+        
+        .card-date {
+            color: #95a5a6;
+            font-size: 0.85rem;
+        }
+        
+        .card-title {
+            font-size: 1.35rem;
+            margin-bottom: 12px;
+            color: #2c3e50;
+            font-weight: 600;
+            line-height: 1.4;
+            letter-spacing: -0.3px;
+        }
+        
+        .card-excerpt {
+            color: #5a6c7d;
+            font-size: 0.98rem;
+            line-height: 1.65;
+        }
+        
+        /* Simple footer */
+        footer {
+            background: #2c3e50;
+            color: white;
+            padding: 45px 28px 28px;
+            margin-top: 60px;
+        }
+        
+        .footer-container {
+            max-width: 1150px;
+            margin: 0 auto;
+        }
+        
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 38px;
+            margin-bottom: 35px;
+        }
+        
+        .footer-column h3 {
+            margin-bottom: 18px;
+            color: #27ae60;
+            font-size: 1.05rem;
+            font-weight: 600;
+        }
+        
+        .footer-column p {
+            color: #bdc3c7;
+            font-size: 0.92rem;
+            line-height: 1.6;
+        }
+        
+        .footer-links {
+            list-style: none;
+        }
+        
+        .footer-links li {
+            margin-bottom: 10px;
+        }
+        
+        .footer-links a {
+            color: #bdc3c7;
+            text-decoration: none;
+            font-size: 0.92rem;
+            transition: color 0.3s;
+        }
+        
+        .footer-links a:hover {
+            color: white;
+        }
+        
+        .social-icons {
+            display: flex;
+            gap: 14px;
+            margin-top: 16px;
+        }
+        
+        .social-icons a {
+            color: #bdc3c7;
+            font-size: 1.2rem;
+            transition: color 0.3s;
+        }
+        
+        .social-icons a:hover {
+            color: #27ae60;
+        }
+        
+        .footer-disclosure {
+            border-top: 1px solid #34495e;
+            padding-top: 28px;
+            color: #95a5a6;
+            font-size: 0.85rem;
+            line-height: 1.7;
+        }
+        
+        .footer-disclosure p + p {
+            margin-top: 12px;
+        }
+        
+        @media (max-width: 768px) {
+            .tagline h1 {
+                font-size: 1.9rem;
+            }
+            
+            .nav-menu {
+                display: none;
+            }
+            
+            .content-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo">GreenSprout</div>
+            <ul class="nav-menu">
+                <li><a href="#">Investing</a></li>
+                <li><a href="#">Banking</a></li>
+                <li><a href="#">Credit Cards</a></li>
+                <li><a href="#">Loans</a></li>
+                <li><a href="#">Insurance</a></li>
+            </ul>
+        </nav>
+    </header>
+    
+    <section class="tagline">
+        <div class="tagline-content">
+            <h1>Make the right moves for your future</h1>
+            <p>Expert financial insights to help you invest smarter and build lasting wealth</p>
+        </div>
+    </section>
+    
+    <main class="container">
+        <div class="content-grid">
+            <article class="content-card">
+                <div class="card-image"></div>
+                <div class="card-body">
+                    <div class="card-meta">
+                        <span class="card-category">Investing</span>
+                        <span class="card-date">Feb 25, 2026</span>
+                    </div>
+                    <h2 class="card-title">5 Index Funds Every Beginner Should Consider</h2>
+                    <p class="card-excerpt">Build a solid foundation with these low-cost, diversified investment options that consistently outperform active management.</p>
+                </div>
+            </article>
+            
+            <article class="content-card">
+                <div class="card-image"></div>
+                <div class="card-body">
+                    <div class="card-meta">
+                        <span class="card-category">Credit Cards</span>
+                        <span class="card-date">Feb 24, 2026</span>
+                    </div>
+                    <h2 class="card-title">Best Travel Rewards Cards of 2026</h2>
+                    <p class="card-excerpt">Maximize your points and unlock premium travel benefits with these top-rated credit cards for frequent travelers.</p>
+                </div>
+            </article>
+            
+            <article class="content-card">
+                <div class="card-image"></div>
+                <div class="card-body">
+                    <div class="card-meta">
+                        <span class="card-category">Banking</span>
+                        <span class="card-date">Feb 23, 2026</span>
+                    </div>
+                    <h2 class="card-title">High-Yield Savings: Where to Get 5%+</h2>
+                    <p class="card-excerpt">Make your cash work harder with these top-rated online savings accounts offering competitive APY rates.</p>
+                </div>
+            </article>
+            
+            <article class="content-card">
+                <div class="card-image"></div>
+                <div class="card-body">
+                    <div class="card-meta">
+                        <span class="card-category">Retirement</span>
+                        <span class="card-date">Feb 22, 2026</span>
+                    </div>
+                    <h2 class="card-title">Roth vs Traditional IRA: Which to Choose?</h2>
+                    <p class="card-excerpt">Understanding the tax implications today can make a $300K difference in your retirement savings decades from now.</p>
+                </div>
+            </article>
+            
+            <article class="content-card">
+                <div class="card-image"></div>
+                <div class="card-body">
+                    <div class="card-meta">
+                        <span class="card-category">Loans</span>
+                        <span class="card-date">Feb 21, 2026</span>
+                    </div>
+                    <h2 class="card-title">When Refinancing Your Mortgage Makes Sense</h2>
+                    <p class="card-excerpt">Calculate whether lower rates justify the closing costs and discover the break-even point for your scenario.</p>
+                </div>
+            </article>
+            
+            <article class="content-card">
+                <div class="card-image"></div>
+                <div class="card-body">
+                    <div class="card-meta">
+                        <span class="card-category">Budgeting</span>
+                        <span class="card-date">Feb 20, 2026</span>
+                    </div>
+                    <h2 class="card-title">The 50/30/20 Rule: Does It Still Work in 2026?</h2>
+                    <p class="card-excerpt">A fresh look at this classic budgeting framework and how to adapt it for today's economic realities.</p>
+                </div>
+            </article>
+            
+            <article class="content-card">
+                <div class="card-image"></div>
+                <div class="card-body">
+                    <div class="card-meta">
+                        <span class="card-category">Investing</span>
+                        <span class="card-date">Feb 19, 2026</span>
+                    </div>
+                    <h2 class="card-title">Dividend Stocks vs Growth Stocks Explained</h2>
+                    <p class="card-excerpt">Learn the key differences and how to build a balanced portfolio that aligns with your financial goals.</p>
+                </div>
+            </article>
+            
+            <article class="content-card">
+                <div class="card-image"></div>
+                <div class="card-body">
+                    <div class="card-meta">
+                        <span class="card-category">Credit Cards</span>
+                        <span class="card-date">Feb 18, 2026</span>
+                    </div>
+                    <h2 class="card-title">Building Credit from Scratch: A Complete Guide</h2>
+                    <p class="card-excerpt">Establish a strong credit history from zero with these proven strategies and best-practice tips.</p>
+                </div>
+            </article>
+            
+            <article class="content-card">
+                <div class="card-image"></div>
+                <div class="card-body">
+                    <div class="card-meta">
+                        <span class="card-category">Insurance</span>
+                        <span class="card-date">Feb 17, 2026</span>
+                    </div>
+                    <h2 class="card-title">How Much Life Insurance Do You Really Need?</h2>
+                    <p class="card-excerpt">Calculate the right coverage amount for your family's needs without overpaying for unnecessary protection.</p>
+                </div>
+            </article>
+        </div>
+    </main>
+    
+    <footer>
+        <div class="footer-container">
+            <div class="footer-grid">
+                <div class="footer-column">
+                    <h3>GreenSprout</h3>
+                    <p>Independent financial journalism helping you make smarter decisions about your money.</p>
+                    <div class="social-icons">
+                        <a href="#">𝕏</a>
+                        <a href="#">📘</a>
+                    </div>
+                </div>
+                <div class="footer-column">
+                    <h3>Topics</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">Banking</a></li>
+                        <li><a href="#">Investing</a></li>
+                        <li><a href="#">Credit Cards</a></li>
+                        <li><a href="#">Loans</a></li>
+                        <li><a href="#">Insurance</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Company</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">About Us</a></li>
+                        <li><a href="#">Editorial Policy</a></li>
+                        <li><a href="#">Contact</a></li>
+                        <li><a href="#">Careers</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Legal</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">Privacy Policy</a></li>
+                        <li><a href="#">Terms of Service</a></li>
+                        <li><a href="#">Advertiser Disclosure</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-disclosure">
+                <p>GreenSprout.com is an independent, advertising-supported comparison website. The products or offers that appear on this website are from third party partners and advertisers from which GreenSprout.com receives compensation. This compensation may influence which products we review, write about, advertise, and how and where those products appear on our website. The articles found on GreenSprout.com are provided as free tools and are for informational purposes only. GreenSprout.com is not an investment advisor and our content is not intended to provide investment advice.</p>
+                <p>© 2026 GreenSprout • 1343 Main St Suite 705, Sarasota FL 34236</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
